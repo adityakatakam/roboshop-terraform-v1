@@ -198,23 +198,3 @@ resource "aws_route53_record" "payment" {
   ttl     = 10
   records = [aws_instance.payment.private_ip]
 }
-
-
-
-resource "aws_instance" "payment" {
-  ami           = "ami-09c813fb71547fc4f"
-  instance_type = "t3.small"
-  vpc_security_group_ids = ["sg-08cebf157b626fae0"]
-
-  tags = {
-    Name = "payment"
-  }
-}
-
-resource "aws_route53_record" "payment" {
-  zone_id = "Z02346551HC8AOL8EM1LW"
-  name    = "payment-dev"
-  type    = "A"
-  ttl     = 10
-  records = [aws_instance.payment.private_ip]
-}
